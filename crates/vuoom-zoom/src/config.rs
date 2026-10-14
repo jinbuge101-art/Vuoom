@@ -42,6 +42,8 @@ pub struct ZoomConfig {
     pub max_per_minute: f64,
     /// When `true`, every mouse click seeds a zoom (the original behaviour). When `false`,
     /// only the manual zoom hotkey ([`crate::InputEvent::ZoomMark`]) seeds a zoom.
+    /// Defaults to `true` so the crate behaves like the app (and Screen Studio)
+    /// out of the box; set to `false` for manual-hotkey-only planning.
     pub auto_zoom_on_click: bool,
 }
 
@@ -61,7 +63,7 @@ impl Default for ZoomConfig {
             min_rezoom_interval: 1.5,
             max_zoom_len: 8.0,
             max_per_minute: 4.0,
-            auto_zoom_on_click: false,
+            auto_zoom_on_click: true,
         }
     }
 }

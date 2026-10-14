@@ -278,8 +278,11 @@ mod tests {
 
     #[test]
     fn clicks_do_not_zoom_in_manual_mode() {
-        // Default config = manual: clicks alone seed nothing.
-        let cfg = ZoomConfig::default();
+        // Manual mode = explicit opt-out: clicks alone seed nothing.
+        let cfg = ZoomConfig {
+            auto_zoom_on_click: false,
+            ..ZoomConfig::default()
+        };
         assert!(!cfg.auto_zoom_on_click);
         let events = [click(1.0, 0.3, 0.3), click(5.0, 0.7, 0.7)];
         assert!(plan_zooms(&events, 8.0, &cfg).is_empty());
@@ -328,7 +331,7 @@ mod tests {
     }
 
     #[test]
-    fn zoom_mark_seeds_a_zoom_even_in_manual_mode() {
+    fn zoom_mark_seeds_a_zoom() {
         let cfg = ZoomConfig::default();
         let events = [InputEvent::ZoomMark {
             t: 2.0,
