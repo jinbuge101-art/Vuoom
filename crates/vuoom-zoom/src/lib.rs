@@ -45,8 +45,7 @@ mod gate_tests {
     use super::*;
     use glam::DVec2;
 
-    /// These gate tests exercise the click→zoom pathway, so they opt click-to-zoom on
-    /// (the default trigger is now the manual hotkey).
+    /// These gate tests exercise the click→zoom pathway (the default trigger).
     fn cfg() -> ZoomConfig {
         ZoomConfig {
             auto_zoom_on_click: true,
